@@ -1,0 +1,18 @@
+name: Semantic Version image tag
+description: Remotely tag an image if it is the latest version
+inputs:
+  image:
+    description: image ref to tag
+    required: true
+  tags:
+    description: list of tags
+    required: false
+    default: |
+      {{major}}
+      {{major}}.{{minor}}
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{inputs.image}}
+    - ${{inputs.tags}}
